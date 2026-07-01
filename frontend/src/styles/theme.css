@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+:root{
+    --color-bg: #14171C;
+    --color-bgw:white;
+    --color-surface: #1E2229;
+    --color-border: #2A2F38;
+    --color-text: #E8EAED;
+    --color-text-muted: #8B92A0;
+    --color-accent: #E8A33D;
+
+    --font-display: "Space Grotesk", sans-serif;
+    --font-body: "Times New Roman", serif;
+    --font-mono: "JetBrains Mono", monospace;
+}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    background-color: var(--color-bg);
+    color:var(--color-text);
+    font-family:var(--font-body);
+}
+.App-layout{
+    display:flex;
+    min-height:100vh;
+}
+.sidebar{
+    width:230px;
+    background-color:var(--color-surface);
+    border-right:1px solid var(--color-border);
+    padding:1.5rem 1rem;
+    flex-shrink:0;
+}
+.main-content{
+    flex:1;
+    padding: 1.5rem 2rem;
+}
+.sidebar a{
+    display:block;
+    color:var(--color-text-muted);
+    text-decoration:none;
+    padding: 0.6rem 0.8rem;
+    border-radius:6px;
+    margin-bottom:0.25rem;
+    font-family:var(--font-display);
+    cursor:pointer;
+}
+.sidebar a:hover{
+    background-color:var(--color-border);
+    color:var(--color-text);
+}

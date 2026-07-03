@@ -1,54 +1,148 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
 :root{
+    --font-display: "Space Grotesk", sans-serif;
+    --font-body: "Inter", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+
+    --radius: 8px;
+    --transition: 150ms ease;
+}
+
+/* ---- Dark theme (default) ---- */
+:root,
+[data-theme="dark"]{
     --color-bg: #14171C;
-    --color-bgw:white;
     --color-surface: #1E2229;
+    --color-surface-hover: #262B33;
     --color-border: #2A2F38;
     --color-text: #E8EAED;
     --color-text-muted: #8B92A0;
-    --color-accent: #E8A33D;
+    --color-accent: #a0edf7;
+    --color-accent-contrast: #14171C;
+    --color-danger: #E5484D;
+    --color-success: #3DDC84;
+}
 
-    --font-display: "Space Grotesk", sans-serif;
-    --font-body: "Times New Roman", serif;
-    --font-mono: "JetBrains Mono", monospace;
+/* ---- Light theme ---- */
+[data-theme="light"]{
+    --color-bg: #F7F7F5;
+    --color-surface: #FFFFFF;
+    --color-surface-hover: #F0F0EE;
+    --color-border: #E2E2DE;
+    --color-text: #1B1D22;
+    --color-text-muted: #6B7280;
+    --color-accent: #a0edf7;       /* darker gold — stays AA-contrast on white */
+    --color-accent-contrast: #FFFFFF;
+    --color-danger: #C4302B;
+    --color-success: #1E8E5A;
+}
+[data-theme="gray"]{
+    --color-bg: #4B4F58;
+    --color-surface: #5A5F6A;
+    --color-surface-hover: #666B77;
+    --color-border: #71767F;
+    --color-text: #F5F5F3;
+    --color-text-muted: #C7CAD1;
+    --color-accent: #a0edf7;
+    --color-accent-contrast: #040405;
+    --color-danger: #E5484D;
+    --color-success: #3DDC84;
 }
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body{
     background-color: var(--color-bg);
-    color:var(--color-text);
-    font-family:var(--font-body);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    transition: background-color var(--transition), color var(--transition);
 }
+
 .App-layout{
-    display:flex;
-    min-height:100vh;
+    display: flex;
+    min-height: 100vh;
 }
+
 .sidebar{
-    width:230px;
-    background-color:var(--color-surface);
-    border-right:1px solid var(--color-border);
-    padding:1.5rem 1rem;
-    flex-shrink:0;
+    width: 230px;
+    background-color: var(--color-surface);
+    border-right: 1px solid var(--color-border);
+    padding: 1.5rem 1rem;
+    flex-shrink: 0;
+    transition: background-color var(--transition), border-color var(--transition);
 }
+
 .main-content{
-    flex:1;
+    flex: 1;
     padding: 1.5rem 2rem;
 }
+
+
 .sidebar a{
-    display:block;
-    color:var(--color-text-muted);
-    text-decoration:none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
     padding: 0.6rem 0.8rem;
-    border-radius:6px;
-    margin-bottom:0.25rem;
-    font-family:var(--font-display);
-    cursor:pointer;
+    border-radius: 6px;
+    margin-bottom: 0.25rem;
+    font-family: var(--font-display);
+    cursor: pointer;
+    transition: background-color var(--transition), color var(--transition);
 }
+
 .sidebar a:hover{
-    background-color:var(--color-border);
-    color:var(--color-text);
+    background-color: var(--color-surface-hover);
+    color: var(--color-text);
+}
+.sidebar.collapsed {
+  width: 80px;
+}
+.sidebar-toggle {
+  background: none;
+  border: none;
+  color:var(--color-text);
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.sidebar a.active{
+    background-color: var(--color-accent);
+    color: var(--color-accent-contrast);
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+.header h2{
+    font-family: var(--font-display);
+}
+
+/* ---- Theme toggle ---- */
+.theme-toggle{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color var(--transition), transform var(--transition);
+}
+.theme-toggle:hover{
+    background-color: var(--color-surface-hover);
+    transform: scale(1.05);
+}
+.theme-toggle:active{
+    transform: scale(0.95);
 }
